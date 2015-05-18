@@ -42,14 +42,7 @@ import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
     word2vec.setVocab(cache)
     word2vec.fit()
 
-    // do some tests on it
-    val similarWordsToDay = word2vec.wordsNearest("day", 10)
-    Console.println("Ten most similar words to 'day': " + similarWordsToDay)
-    val similarWordsToShe = word2vec.wordsNearest("she", 1)
-    Console.println("Most similar word to 'she': " + similarWordsToShe)
-    val similarityHeShe = word2vec.similarity("he", "she")
-    Console.println("similarity(he, she)=" + similarityHeShe)
-
+    Console.println("Save vector as " + vecfile)
     WordVectorSerializer.writeWordVectors(word2vec, vecfile)
     // save the transformation matrix for later use
     /*val weights = new PrintWriter(new FileWriter(wtfile), true)
@@ -59,6 +52,14 @@ import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
       word2vec.getWordVector(word).map(_.toString).mkString(","), word)))
     weights.flush()
     weights.close()*/
+
+    // do some tests on it
+    val similarWordsToDay = word2vec.wordsNearest("day", 10)
+    Console.println("Ten most similar words to 'day': " + similarWordsToDay)
+    val similarWordsToShe = word2vec.wordsNearest("she", 1)
+    Console.println("Most similar word to 'she': " + similarWordsToShe)
+    val similarityHeShe = word2vec.similarity("he", "she")
+    Console.println("similarity(he, she)=" + similarityHeShe)
   }
 
   class MySentPreproc extends SentencePreProcessor {

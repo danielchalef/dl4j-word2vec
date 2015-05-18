@@ -1,4 +1,4 @@
-package com.kt.nlp
+package org.dc.nlp
 
 import java.io.File
 import java.io.File
